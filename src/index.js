@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {TodoLIstPage} from './pages/TodoListPage';
 
 ReactDOM.render(
-  <h1>hello</h1>,
+  <TodoLIstPage/>,
   document.getElementById('root')
 );
