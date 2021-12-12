@@ -11,14 +11,15 @@ const iconTypes = {
         component: SendIcon,
         variant: 'contained'
     }
-}
+};
 
-export const Button = ({type, text, handleClick}) => {
+export const Button = ({ type, text, handleClick }) => {
     const Icon = iconTypes[type].component;
-    return (<>
-        <Btn 
-        endIcon={<Icon/>} 
+
+    return <Btn
+        startIcon={<Icon />}
         onClick={handleClick}
-        variant={iconTypes[type].variant}>{text}</Btn>
-    </>)
+        variant={iconTypes[type].variant} >
+            {text}
+        </Btn>
 };

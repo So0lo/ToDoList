@@ -1,34 +1,67 @@
+import {useState, useCallback} from 'react';
 import Stack from '@mui/material/Stack';
-import { TextField, Button, Todo} from '../components';
+import {TextField, Button, Todo} from '../components';
+import {useSelector, useDispatch} from 'react-redux';
+import {getTodos} from '../redux/todoSelectors';
+import {addTodo, deleteTodo, switchTodoState} from '../redux/todoActions';
+import {Filter} from '../components/Filter';
 
-export const TodoLIstPage = () => {
 
-    const handleChange = () => {
-    }
+export const TodoListPage = () => {
+    const [todoText, setTodoText] = useState('');
+    const dispatch = useDispatch();
+    const todos = useSelector(getTodos);
+
+    const handleChange = ({target: {value}}) => {
+        setTodoText(value);
+    };
+
+    const addTodoHandler = () => {
+        dispatch(addTodo(todoText));
+        setTodoText('');
+    };
+
+    const onTodoClick = useCallback((id) => {
+        dispatch(switchTodoState(id));
+    },[dispatch, switchTodoState]);
+
+    const onTodoDelete = useCallback((id) => {
+        dispatch(deleteTodo(id));
+    }, [dispatch, deleteTodo]);
+
     return (<>
-        <h1>Todo List</h1>
-        <Stack 
-            spacing={10} 
+        <h1>Todo list</h1>
+        <Stack
+            justifyContent="center"
+            alignItems="center"
+            marginBottom={5}>
+            <Filter/>
+        </Stack>
+        <Stack
+            spacing={10}
             direction="row"
             justifyContent="center"
             alignItems="center">
-            <TextField
-                handleChange={handleChange}
-                id="todo-text-input"
-                hintText="what you are going to do?"
-                fieldName="TODO"
-                value="dgfa"
-            />
-            <Button type="add" text='add'/>
+                <TextField
+                    handleChange={handleChange}
+                    id='todo-text-input'
+                    hintText='What you are going to do?'
+                    fieldName='TODO'
+                    value={todoText}
+                />
+                <Button type='add' text='add' handleClick={addTodoHandler}/>
         </Stack>
-        <Stack 
-            spacing={5} 
-            justifyContent="center"
-            alignItems="center"
+        <Stack
             marginTop={10}
-        >
-        <Todo/>
+            spacing={5}
+            justifyContent="center"
+            alignItems="center" >
+            {todos.map((todoData) => 
+                <Todo 
+                    {...todoData} 
+                    handleClick={onTodoClick}
+                    handleDelete={onTodoDelete}                   
+                    key={todoData.id} />)}
         </Stack>
-
     </>)
 };
