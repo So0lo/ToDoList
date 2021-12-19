@@ -1,5 +1,5 @@
 import {todoActionTypes} from './todoActionTypes';
-import { FILTER_TYPE } from '../constants/FilterConstants';
+import { FILTER_TYPE } from '../../constants/FilterConstants';
 
 const initialState = {
     todos: [],
@@ -10,6 +10,7 @@ export const todoReducer = (state = initialState, action) => {
     switch (action.type) {
         case todoActionTypes.ADD_TODO:
             return {
+                ...state,
                 todos: [...state.todos, {...action.payload}]
             };
         case todoActionTypes.DELETE_TODO:
@@ -20,10 +21,16 @@ export const todoReducer = (state = initialState, action) => {
             }
         case todoActionTypes.SWITCH_TODO:
             return {
+                ...state,
                 todos: state.todos.map((todo) => ({
                     ...todo,
                     done: todo.id === action.payload.toSwitchId ? !todo.done : todo.done
                 }))
+            }
+        case todoActionTypes.CHANGE_FILTER:
+            return {
+                ...state,
+                filterType: action.payload.filterType
             }
         default:
             return state;
