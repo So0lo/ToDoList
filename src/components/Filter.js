@@ -1,9 +1,9 @@
 import {FilterButton} from './FilterButton';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import { FILTER_TYPE } from '../constants/FilterConstants';
+import {FILTER_TYPE} from '../constants/filterConstants';
 import {useSelector, useDispatch} from 'react-redux';
-import { changeFilter } from '../redux/todo/todoActions';
-import { getFilterType } from '../redux/todo/todoSelectors';
+import {changeFilter} from '../redux/todo/todoActions';
+import {getFilterType} from '../redux/todo/todoSelectors';
 
 export const Filter = () => {
     const currentFilterType = useSelector(getFilterType);
@@ -24,4 +24,3 @@ export const Filter = () => {
             }
         </ButtonGroup>)
 };
-

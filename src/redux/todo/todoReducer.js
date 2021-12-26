@@ -1,5 +1,5 @@
 import {todoActionTypes} from './todoActionTypes';
-import { FILTER_TYPE } from '../../constants/FilterConstants';
+import {FILTER_TYPE} from '../../constants/filterConstants';
 
 const initialState = {
     todos: [],
@@ -15,6 +15,7 @@ export const todoReducer = (state = initialState, action) => {
             };
         case todoActionTypes.DELETE_TODO:
             return {
+                ...state,
                 todos: state.todos.filter(
                     (todo) => todo.id !== action.payload.toDeleteId
                 )

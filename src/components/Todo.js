@@ -5,6 +5,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export const Todo = memo(({done, text, handleClick, handleDelete, id}) => {
+    console.log('render');
     return <Chip
         clickable
         label={text}

@@ -1,6 +1,6 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {todoReducer} from './todo/todoReducer';
-import {userReducer} from "./user/userReducer";
+import {userReducer} from './user/userReducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 

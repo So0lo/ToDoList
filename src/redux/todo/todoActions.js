@@ -28,4 +28,3 @@ export const changeFilter = (filterType) => ({
     type: todoActionTypes.CHANGE_FILTER,
     payload: {filterType}
 });
-

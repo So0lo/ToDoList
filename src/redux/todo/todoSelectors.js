@@ -1,4 +1,4 @@
-import { FILTER_TYPE } from "../../constants/FilterConstants";
+import {FILTER_TYPE} from '../../constants/filterConstants';
 
 export const getTodos = ({todo: {todos}}) => todos;
 export const getFilterType = ({todo: {filterType}}) => filterType;
